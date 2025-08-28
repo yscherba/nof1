@@ -54,7 +54,11 @@ export default function Login() {
                 setSuccess('Registration successful! Please check your email to confirm.');
             }
         } catch (err: unknown) {
-            setError(err.message);
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('An unknown error occurred');
+            }
         } finally {
             setLoading(false);
         }
