@@ -30,7 +30,7 @@ export default function Login() {
         checkAuth();
     }, [router]);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
