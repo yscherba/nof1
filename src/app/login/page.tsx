@@ -53,7 +53,7 @@ export default function Login() {
                 if (error) throw error;
                 setSuccess('Registration successful! Please check your email to confirm.');
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             setError(err.message);
         } finally {
             setLoading(false);
@@ -90,13 +90,13 @@ export default function Login() {
                     setAction('login');
                     handleSubmit(e);
                 }}>
-                    {loading ? 'Signing In...' : 'Log In'}
+                    {loading ? "Signing In..." : "Log In"}
                 </button>
                 <button disabled={loading} type="submit" className="button w-full" onClick={() => {
                     setAction('register');
                     handleSubmit(e);
                 }}>
-                    {loading ? 'Signing Up...' : 'Register'}
+                    {loading ? "Signing Up..." : "Register"}
                 </button>
                 <h3 className="text-center">OR</h3>
                 <div className="flex flex-row gap-4 justify-center">
@@ -107,8 +107,8 @@ export default function Login() {
                         <FontAwesomeIcon icon={faFacebook} size="2x" />
                     </button>
                 </div>
-                {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
-                {success && <p style={{ color: 'green', marginTop: '10px' }}>{success}</p>}
+                {error && <p>{error}</p>}
+                {success && <p>{success}</p>}
             </form>
         </div>
     );

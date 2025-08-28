@@ -6,8 +6,8 @@ import LeftSidebar from '../components/LeftSidebar';
 import { supabase } from '../utils/supabaseClient';
 
 export default function Home() {
-    const [data, setData] = useState<any>(null);
-    const [error, setError] = useState<any>(null);
+    const [data, setData] = useState<unknown>(null);
+    const [error, setError] = useState<unknown>(null);
     const [form, setForm] = useState({
         org_name: "",
         info: "",
@@ -94,7 +94,7 @@ export default function Home() {
                                 </button>
                             </form>
                             <h3>Example data from supabase</h3>
-                            {error && <p className="text-red-500">{JSON.stringify(error)}</p>}
+                            {!!error && <p className="text-red-500">Error hapened</p>}
                             {data ? <p>{JSON.stringify(data)}</p> : <p>Loading...</p>}
                         </div>
                     </main>
