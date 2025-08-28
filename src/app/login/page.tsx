@@ -90,13 +90,15 @@ export default function Login() {
                     required
                     className="input"
                 />
-                <button disabled={loading} type="submit" className="button w-full" onClick={() => {
+                <button disabled={loading} type="submit" className="button w-full" onClick={(e) => {
+                    e.preventDefault();
                     setAction('login');
                     handleSubmit(e);
                 }}>
                     {loading ? "Signing In..." : "Log In"}
                 </button>
-                <button disabled={loading} type="submit" className="button w-full" onClick={() => {
+                <button disabled={loading} type="submit" className="button w-full" onClick={(e) => {
+                    e.preventDefault();
                     setAction('register');
                     handleSubmit(e);
                 }}>
