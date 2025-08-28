@@ -53,7 +53,7 @@ export default function Login() {
                 if (error) throw error;
                 setSuccess('Registration successful! Please check your email to confirm.');
             }
-        } catch (err) {
+        } catch (err: any) {
             setError(err.message);
         } finally {
             setLoading(false);
