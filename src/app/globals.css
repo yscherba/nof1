@@ -15,6 +15,7 @@
   --border-radius-large: 0.75rem;
 }
 
+/* Froms start */
 body {
   background: var(--background);
   color: var(--foreground);
@@ -42,7 +43,7 @@ body {
 }
 
 .button-icon {
-    @apply flex items-center justify-center w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition
+    @apply flex items-center justify-center w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition;
 }
 
 .button-icon {
@@ -55,7 +56,7 @@ body {
     @apply bg-blue-800 hover:bg-blue-900
 }
 
-input, textarea, select {
+.input {
   font-size: 1em;
     background-color: var(--background-muted);
     border: 1px solid var(--border-secondary);
@@ -67,8 +68,34 @@ input, textarea, select {
     appearance: none;
 }
 
-input:hover,
-textarea:hover,
-select:hover {
+.input:hover {
     border-color: var(--border-color-active);
 }
+
+/* Froms end */
+
+/* Layout start*/
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 64rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+aside {}
+
+header {}
+
+main {}
+
+footer {}
+
+/* Layout end */
+
+/* Typography start */
+h3 {
+    @apply text-xl font-bold;
+}
+/* Typography end */

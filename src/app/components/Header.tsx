@@ -8,9 +8,13 @@ export default function Header() {
     }
 
     return (
-        <header className="p-4 bg-gray-100 border-b flex justify-between items-center">
-            <h1 className="text-xl font-bold">Header</h1>
-            <button onClick={handleLogout} className="bg-red-600 text-white px-4 py-2 rounded">Logout</button>
+        <header className="border-b border-gray-300 px-4 py-6">
+            <div className="container">
+                <div className="flex justify-between items-center">
+                    <h1 className="text-xl font-bold">Logo</h1>
+                    <button onClick={handleLogout} className="button">Logout</button>
+                </div>
+            </div>
         </header>
     );
 }
