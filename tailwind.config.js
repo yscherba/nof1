@@ -1,19 +1,18 @@
-const colors = require('tailwindcss/colors')
 module.exports = {
     content: [
-        "./src/**/*.{js,ts,jsx,tsx}",
+        "./src/**/*.{js,ts,jsx,tsx,css,scss,html}",
     ],
     theme: {
         extend: {
             colors: {
-                gray: colors.coolGray,
-                blue: colors.lightBlue,
-                red: colors.rose,
-                pink: colors.fuchsia,
+                gray: "#4a4a4a",
+                emerald: "#2cda9d",
+                darkCyan: "#3e8989",
+                raisinBlack: "#202020",
+                lightGray: "#f5f5f5",
             },
             borderRadius: {
                 xl: "1rem",
-                percent50: "50%"
             },
         },
     },

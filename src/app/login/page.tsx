@@ -1,7 +1,10 @@
 "use client";
 import { useState } from "react";
 import { supabase } from "../utils/supabaseClient";
-import '../styles/globals.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
+
+import '../../app/globals.css';
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -31,7 +34,6 @@ export default function Login() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
-                    className="input-base"
                 />
                 <input
                     type="password"
@@ -39,29 +41,27 @@ export default function Login() {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     required
-                    className="input-base"
                 />
                 <button
                     type="submit"
-                    className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                    className="button"
                 >
                     Login with Email & Password
                 </button>
                 <h3 className="text-center">OR</h3>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-row gap-4 justify-center">
                     <button
                         type="button"
                         onClick={() => handleSocialLogin('google')}
-                        className="bg-red-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-red-700 transition"
-                    >
-                        Login with Google
+                        className="button-icon">
+                        <FontAwesomeIcon icon={faGoogle} size="2x" />
                     </button>
                     <button
                         type="button"
                         onClick={() => handleSocialLogin('facebook')}
-                        className="bg-blue-800 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-900 transition"
+                        className="button-icon facebook"
                     >
-                        Login with Facebook
+                        <FontAwesomeIcon icon={faFacebookF} size="2x" />
                     </button>
                 </div>
                 {error && <p className="text-red-500 text-center">{error}</p>}

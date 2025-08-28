@@ -1,12 +1,74 @@
 @import "tailwindcss";
 
 :root {
+  /* colors */
   --background: #ffffff;
   --foreground: #171717;
+  --background-muted: #f8fafc;
+  --border-secondary: #bed1e7;
+  --color-primary: #000000;
+  --border-color-active: #64748b;
+
+  /* border radius */
+  --border-radius-small: 0.375rem;
+  --border-radius-medium: 0.5rem;
+  --border-radius-large: 0.75rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.button {
+    color: var(--color-primary);
+    background-color: var(--background);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    padding: .25rem 1.25rem;
+    border: 1.5px solid var(--border-secondary);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 2px 2px 0 0 var(--border-secondary);
+    transition-duration: .2s;
+    cursor: pointer;
+}
+
+.button-icon:hover,
+.button:hover {
+    box-shadow: 0 0 0 0 var(--border-secondary);
+    transform: translate(2px, 2px);
+}
+
+.button-icon {
+    @apply flex items-center justify-center w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition
+}
+
+.button-icon {
+    box-shadow: 2px 2px 0 0 var(--border-secondary);
+    transition-duration: .2s;
+    cursor: pointer;
+}
+
+.button-icon.facebook {
+    @apply bg-blue-800 hover:bg-blue-900
+}
+
+input, textarea, select {
+  font-size: 1em;
+    background-color: var(--background-muted);
+    border: 1px solid var(--border-secondary);
+    color: var(--color-primary);
+    padding: .5rem .75rem 12px;
+    border-radius: var(--border-radius-medium);
+    width: 100%;
+    outline: none;
+    appearance: none;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: var(--border-color-active);
 }
