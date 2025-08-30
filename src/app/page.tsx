@@ -1,22 +1,21 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "./utils/supabaseClient";
+import { getSession } from './utils/facade';
 
 export default function Home() {
-    const router = useRouter();
-
-    useEffect(() => {
-        async function checkAuth() {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session) {
-                router.replace("/dashboard");
-            } else {
-                router.replace("/login");
-            }
-        }
-        checkAuth();
-    }, [router]);
+    // const router = useRouter();
+    //     useEffect(() => {
+    //     async function checkAuth() {
+    //         const isSession = await getSession();
+    //         if (isSession) {
+    //             router.replace("/dashboard");
+    //         } else {
+    //             router.replace("/login");
+    //         }
+    //     }
+    //     checkAuth();
+    // }, [router]);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen">

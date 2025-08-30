@@ -1,10 +1,10 @@
 "use client";
-import { supabase } from "../utils/supabaseClient";
+import { signOut } from '../utils/facade';
 
 export default function Header() {
     async function handleLogout() {
-        await supabase.auth.signOut();
-        window.location.href = "/login";
+        const result = await signOut();
+        if (result) window.location.href = "/login";
     }
 
     return (
