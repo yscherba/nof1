@@ -64,18 +64,10 @@ export default function DashboardClientComponent() {
                     required
                     className="input"
                 />
-                <button disabled={loading} type="submit" className="button w-full" onClick={(e) => {
-                    e.preventDefault();
-                    setAction('login');
-                    handleSubmit(e);
-                }}>
+                <button disabled={loading} type="submit" className="button w-full" onClick={() => { setAction('login'); }}>
                     {loading ? "Signing In..." : "Log In"}
                 </button>
-                <button disabled={loading} type="submit" className="button w-full" onClick={(e) => {
-                    e.preventDefault();
-                    setAction('register');
-                    handleSubmit(e);
-                }}>
+                <button disabled={loading} type="submit" className="button w-full" onClick={() => { setAction('register'); }}>
                     {loading ? "Signing Up..." : "Register"}
                 </button>
                 <h3 className="text-center">OR</h3>

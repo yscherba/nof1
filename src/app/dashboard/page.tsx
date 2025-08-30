@@ -1,81 +1,14 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import Header from '../components/Header';
-import Footer from '..//components/Footer';
-import LeftSidebar from '../components/LeftSidebar';
-import { useRouter } from "next/navigation";
-import { addConversation, getSession } from '../utils/facade';
+import { getLoggedInUser } from '../utils/facade';
+import { redirect } from 'next/navigation';
+import AuthDashboardClientComponent from './DashboardClientComponent'
 
-export default function Home() {
-    const [chatRequest, setChatRequest] = useState("");
-    const [chatResponse, setChatResponse] = useState("");
-    const [chatLoading, setChatLoading] = useState(false);
-
-    // const router = useRouter();
-    //     useEffect(() => {
-    //     async function checkAuth() {
-    //         const isSession = await getSession();
-    //         if (isSession) {
-    //             router.replace("/dashboard");
-    //         } else {
-    //             router.replace("/login");
-    //         }
-    //     }
-    //     checkAuth();
-    // }, [router]);
-
-    async function handleChatSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        setChatLoading(true);
-
-        const result = await addConversation(chatRequest);
-
-        if (result.error) {
-            setChatResponse(`Error: ${result.error}`);
-        } else {
-            setChatResponse(result.success || "Success!");
-            setChatRequest("");
-        }
-
-        setChatLoading(false);
+export default async function Dashboard() {
+    const user = await getLoggedInUser();
+    if (!user) {
+        redirect('/login');
     }
 
     return (
-        <div className="page">
-            <Header />
-            <div className="container">
-                <div className="grid grid-cols-12 min-h-1/2">
-                    <LeftSidebar />
-                    <main className="col-span-8 flex items-center">
-                        <div className="rounded-lg border border-gray-300 justify-center m-4 mr-0 w-full px-4 py-6">
-                            <h2>Chat here</h2>
-                            <div className="chat-interface">
-                                <textarea
-                                    className="border p-2 rounded w-full"
-                                    rows={10}
-                                    readOnly
-                                    value={chatResponse}
-                                    placeholder="Response from the assistant will appear here..."
-                                />
-                                <form onSubmit={handleChatSubmit} className="flex flex-col gap-4 mt-4">
-                                    <textarea
-                                        className="border p-2 rounded w-full"
-                                        rows={5}
-                                        value={chatRequest}
-                                        onChange={(e) => setChatRequest(e.target.value)}
-                                        placeholder="Type your message here..."
-                                        required
-                                    />
-                                    <button type="submit" className="button" disabled={chatLoading} >
-                                        {chatLoading ? "Sending..." : "Send"}
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </main>
-                </div>
-            </div>
-            <Footer />
-        </div>
+        <AuthDashboardClientComponent />
     );
 }

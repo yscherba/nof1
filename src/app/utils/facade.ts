@@ -4,7 +4,7 @@ import { createClient } from './supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export async function registerUser(email: string, password: string) {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { error} = await supabase.auth.signUp({ email, password });
     if (error) {
         console.error("Registration failed:", error);
@@ -14,23 +14,23 @@ export async function registerUser(email: string, password: string) {
 }
 
 export async function getSession() {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data: { session } } = await supabase.auth.getSession();
     return !!session;
 }
 
 export const getLoggedInUser = async () => {
-  const supabase = createClient();
-  const user = await supabase.auth.getUser();
-  if (user.error) {
-    return null;
-  } else {
-    return user.data.user;
-   }
+    const supabase = await createClient();
+    const user = await supabase.auth.getUser();
+    if (user.error) {
+        return null;
+    } else {
+        return user.data.user;
+    }
 };
 
 export async function signInWithOAuth({ provider }: { provider: 'google' | 'facebook' }) {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { error } = await supabase.auth.signInWithOAuth({ provider });
     if (error) {
         console.error("OAuth sign-in failed:", error);
@@ -40,30 +40,30 @@ export async function signInWithOAuth({ provider }: { provider: 'google' | 'face
 }
 
 export async function signOut() {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { error } = await supabase.auth.signOut();
     if (error) {
         console.error("Logout failed:", error);
         return { error: "Logout failed." };
     }
+    revalidatePath('/login');
     return { success: "Logged out successfully." };
 }
 
 export async function loginUser(email: string, password: string) {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { error} = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
         console.error("Login failed:", error);
         return { error: "Login failed" };
     }
+    revalidatePath('/dashboard');
     return { success: "Logged in successfully!" };
 }
 
 export async function addConversation(request: string) {
-    const supabase = createClient();
-
+    const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
-
     if (!user) {
         return { error: "You must be logged in to start a conversation." };
     }
@@ -76,13 +76,10 @@ export async function addConversation(request: string) {
     };
 
     const { error } = await supabase.from('conversation').insert(conversation);
-
     if (error) {
         console.error("Supabase insert error:", error);
         return { error: "Failed to save conversation to the database." };
     }
-
     revalidatePath('/dashboard');
-
     return { success: "Successfully saved conversation." };
 }
