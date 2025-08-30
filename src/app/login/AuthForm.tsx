@@ -65,10 +65,10 @@ export default function DashboardClientComponent() {
                     className="input"
                 />
                 <button disabled={loading} type="submit" className="button w-full" onClick={() => { setAction('login'); }}>
-                    {loading ? "Signing In..." : "Log In"}
+                    {loading ? "Working For You" : "Log In"}
                 </button>
                 <button disabled={loading} type="submit" className="button w-full" onClick={() => { setAction('register'); }}>
-                    {loading ? "Signing Up..." : "Register"}
+                    {loading ? "Working For You" : "Register"}
                 </button>
                 <h3 className="text-center">OR</h3>
                 <div className="flex flex-row gap-4 justify-center">

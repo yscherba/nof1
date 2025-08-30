@@ -37,17 +37,15 @@ export default function Home() {
                         <div className="rounded-lg border border-gray-300 justify-center m-4 mr-0 w-full px-4 py-6">
                             <h2>Chat here</h2>
                             <div className="chat-interface">
-                                <textarea
-                                    className="border p-2 rounded w-full"
-                                    rows={10}
-                                    readOnly
-                                    value={chatResponse}
-                                    placeholder="Response from the assistant will appear here..."
-                                />
-                                <form onSubmit={handleChatSubmit} className="flex flex-col gap-4 mt-4">
+                                <div className="border p-2 rounded w-full h-[400px] overflow-y-scroll no-scrollbar" >
+                                    {(!chatLoading && !chatResponse) && "Response from the assistant will appear here..."}
+                                    {chatLoading ? "Loading..." : chatResponse}
+                                </div>
+                                <form name="chatFrom" onSubmit={handleChatSubmit} className="flex flex-col gap-4 mt-4">
                                     <textarea
                                         className="border p-2 rounded w-full"
-                                        rows={5}
+                                        name="chatRequest"
+                                        rows={3}
                                         value={chatRequest}
                                         onChange={(e) => setChatRequest(e.target.value)}
                                         placeholder="Type your message here..."
